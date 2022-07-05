@@ -1,0 +1,33 @@
+# 字幕
+subtitle:
+  customizeStyle: false
+  subtitleSuffix: ass
+  # 上方设置为true时才会生效
+  subtitleStyle:
+    "Fontname=DFFangYuanW7-GB5,Fontsize=14,PrimaryColour=&H00FFFFFF,SecondaryColour=&H000000FF,OutlineColour=&H00933AA7,\
+    BackColour=&H00000000,Bold=0,Italic=0,Underline=0,StrikeOut=0,ScaleX=100,ScaleY=100,Spacing=0,Angle=0,\
+    BorderStyle=1,Outline=2,Shadow=0,Alignment=2,MarginL=30,MarginR=30,MarginV=10"
+
+# 匹配视频后缀(小写)
+videoSuffixSet:
+  - ts
+  - wmv
+  - asf
+  - asx
+  - rm
+  - rmvb
+  - mp4
+  - 3gp
+  - mov
+  - m4v
+  - avi
+  - dat
+  - mkv
+  - flv
+  - vob
+
+# ffmpeg解码参数，留空使用cpu解码，兼容性最高
+decode: ''
+
+# ffmpeg编码参数,若使用nvenc编码器将 -crf 23 替换为 -rc constqp -qp 23
+encode: '-c:v libx264 -preset slow -profile:v high -crf 23 -pix_fmt yuv420p'

@@ -1,0 +1,2 @@
+file 'D:\vcb-guides\pre\merge\input\1.mkv'
+file 'D:\vcb-guides\pre\merge\input\2.mkv'
