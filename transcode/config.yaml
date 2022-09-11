@@ -26,6 +26,9 @@ videoSuffixSet:
   - flv
   - vob
 
+# 使用线程数，auto为最大可用线程
+threads: 'auto'
+
 # ffmpeg解码参数，留空使用cpu解码，兼容性最高
 decode: ''
 
