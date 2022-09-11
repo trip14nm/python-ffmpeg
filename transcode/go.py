@@ -11,7 +11,7 @@ subtitleSuffix = config['subtitle']['subtitleSuffix']
 videoSuffixSet = config['videoSuffixSet']
 decode = config['decode']
 encode = config['encode']
-
+threads = config['threads']
 # 路径设置
 curpath = os.getcwd()
 inputDir = os.path.join(curpath, "input")
@@ -37,22 +37,22 @@ for each_file in file_list:
         if os.path.exists(subtitleFile):
             if config['subtitle']['customizeStyle']:
                 ffmpegCommand = (
-                    'ffmpeg {decode} -i "{filename}" -y -vf "subtitles={subtitlename}:force_style={subtitlestyle}"'
+                    'ffmpeg {decode} -i "{filename}" -y -threads {threads} -vf "subtitles={subtitlename}:force_style={subtitlestyle}"'
                     ' {encode} "{outdir}{sep}{name}.mp4"'
                     .format(decode=decode, filename=each_file,
                             subtitlename=subtitleName_format, subtitlestyle=subtitleStyle_format,
-                            encode=encode, outdir=outputDir, sep=os.sep, name=videoName))
+                            encode=encode, threads=threads, outdir=outputDir, sep=os.sep, name=videoName))
             else:
                 ffmpegCommand = (
-                    'ffmpeg {decode} -i "{filename}" -y -vf "subtitles={subtitlename}"'
+                    'ffmpeg {decode} -i "{filename}" -y -threads {threads} -vf "subtitles={subtitlename}"'
                     ' {encode} "{outdir}{sep}{name}.mp4"'
                     .format(decode=decode, filename=each_file, subtitlename=subtitleName_format,
-                            encode=encode, outdir=outputDir, sep=os.sep, name=videoName))
+                            encode=encode, threads=threads, outdir=outputDir, sep=os.sep, name=videoName))
         else:
             ffmpegCommand = (
-                'ffmpeg {decode} -i "{filename}" -y {encode} "{outdir}{sep}{name}.mp4"'
+                'ffmpeg {decode} -i "{filename}" -y {encode} -threads {threads} "{outdir}{sep}{name}.mp4"'
                 .format(decode=decode, filename=each_file,
-                        encode=encode, outdir=outputDir, sep=os.sep, name=videoName))
+                        encode=encode, threads=threads, outdir=outputDir, sep=os.sep, name=videoName))
         command = ('{} && {}'.format(cdCommand, ffmpegCommand))
         print(command)
         os.system(command)
